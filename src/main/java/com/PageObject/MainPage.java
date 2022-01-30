@@ -57,6 +57,10 @@ public class MainPage {
     @FindAll({@FindBy(how = How.XPATH, using = ".//ul[@class='BurgerIngredients_ingredients__list__2A-mT']")})
     private ElementsCollection ingredientsList;
 
+    //заголовок Вход
+    @FindBy(how = How.XPATH, using = ".//h2[text()='Вход']")
+    private SelenideElement enterText;
+
     public LoginPage clickLogInAccountButton() {
         logInAccountButton.click();
         return page(LoginPage.class);
@@ -92,5 +96,15 @@ public class MainPage {
 
     public boolean isIngredientsFillingVisible() {
         return $(ingredientsList.get(2)).isDisplayed();
+    }
+
+    public LoginPage clickLogoutButton() {
+        logoutButton.click();
+        return page(LoginPage.class);
+    }
+
+    public boolean isEnterTextVisible() {
+        enterText.shouldBe(Condition.visible);
+        return true;
     }
 }

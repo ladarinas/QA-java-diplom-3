@@ -1,8 +1,12 @@
 import com.PageObject.LoginPage;
 import com.PageObject.MainPage;
 
+import com.UserOperations;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.open;
 import static org.junit.Assert.assertTrue;
