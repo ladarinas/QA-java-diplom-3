@@ -40,6 +40,19 @@ public class AccountTest {
     }
 
     @Test
+    public void goFromPersonalAccountToConstructorClickLogo() {
+        MainPage mainPage = open(MainPage.URL, MainPage.class);
+        LoginPage loginPage = mainPage.clickPersonalAccountButton();
+        loginPage.login(response.get("email"),response.get("password"));
+        mainPage.clickPersonalAccountButton();
+        assertTrue(mainPage.isProfileButtonVisible());
+        mainPage.clickLogoButton();
+        String actualText = mainPage.getConstructorText();
+        String expectedText = "Соберите бургер";
+        assertEquals (expectedText, actualText);
+    }
+
+    @Test
     public void successLogout() {
         MainPage mainPage = open(MainPage.URL, MainPage.class);
         LoginPage loginPage = mainPage.clickLogInAccountButton();

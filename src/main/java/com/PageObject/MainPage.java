@@ -122,4 +122,12 @@ public class MainPage {
     public String getNameValue() {
         return nameField.getAttribute("value");
     }
+
+    public void clickLogoButton() {
+        logoButton.click();
+    }
+
+    public String getConstructorText() {
+        return constructorText.getText();
+    }
 }
