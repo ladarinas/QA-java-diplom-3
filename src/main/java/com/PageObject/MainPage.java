@@ -130,4 +130,8 @@ public class MainPage {
     public String getConstructorText() {
         return constructorText.getText();
     }
+
+    public void clickConstructorButton() {
+        constructButton.click();
+    }
 }
