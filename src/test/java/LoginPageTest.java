@@ -3,6 +3,7 @@ import com.PageObject.MainPage;
 import com.PageObject.RecoverPasswordPage;
 import com.PageObject.RegisterPage;
 import com.UserOperations;
+import com.codeborne.selenide.Configuration;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,6 +23,8 @@ public class LoginPageTest {
     public void setUp() {
         userOperations = new UserOperations();
         response = userOperations.register();
+        Configuration.browser = "chrome";
+        //System.setProperty("webdriver.chrome.driver", "src/resources/yandexdriver.exe");
     }
 
     @After
