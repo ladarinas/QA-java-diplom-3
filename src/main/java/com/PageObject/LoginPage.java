@@ -1,8 +1,11 @@
 package com.PageObject;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+
+import static com.codeborne.selenide.Condition.visible;
 
 public class LoginPage {
 
@@ -30,4 +33,18 @@ public class LoginPage {
     //Восстановить пароль
     @FindBy(how = How.XPATH,using = ".//a[(text() = 'Восстановить пароль')]")
     private SelenideElement passwordRecoveryButton;
+
+    //кнопка Оформить заказ
+    @FindBy(how = How.XPATH, using = ".//button[text()='Оформить заказ']")
+    private SelenideElement createOrderButton;
+
+    //метод логина
+    public void login (String email, String password)  {
+        emailField.shouldBe(Condition.exist).click();
+        emailField.setValue(email);
+        passwordField.click();
+        passwordField.setValue(password);
+        logInAccountButton.shouldBe(Condition.exist).click();
+        createOrderButton.shouldBe(visible);
+    }
 }
