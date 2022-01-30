@@ -61,6 +61,14 @@ public class MainPage {
     @FindBy(how = How.XPATH, using = ".//h2[text()='Вход']")
     private SelenideElement enterText;
 
+    //кнопка Профиль
+    @FindBy(how = How.XPATH, using = "//a[text()='Профиль']")
+    private SelenideElement ProfileButton;
+
+    //поле Имя
+    @FindBy(how = How.XPATH,using = "//input[@name='Name']")
+    private SelenideElement nameField;
+
     public LoginPage clickLogInAccountButton() {
         logInAccountButton.click();
         return page(LoginPage.class);
@@ -106,5 +114,12 @@ public class MainPage {
     public boolean isEnterTextVisible() {
         enterText.shouldBe(Condition.visible);
         return true;
+    }
+    public boolean isProfileButtonVisible() {
+        ProfileButton.shouldBe(Condition.visible);
+        return true;
+    }
+    public String getNameValue() {
+        return nameField.getAttribute("value");
     }
 }
