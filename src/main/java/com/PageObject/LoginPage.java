@@ -24,7 +24,7 @@ public class LoginPage {
 
     //кнопка Войти
     @FindBy(how = How.XPATH,using = ".//button[(text() = 'Войти')]")
-    private SelenideElement logInAccountButton;
+    private SelenideElement loginAccountButton;
 
     //Зарегестрироваться
     @FindBy(how = How.XPATH,using = ".//a[(text() = 'Зарегистрироваться')]")
@@ -38,13 +38,17 @@ public class LoginPage {
     @FindBy(how = How.XPATH, using = ".//button[text()='Оформить заказ']")
     private SelenideElement createOrderButton;
 
+    public boolean isLogInAccountButtonVisible() {
+        loginAccountButton.shouldBe(Condition.visible);
+        return true;
+    }
     //метод логина
     public void login (String email, String password)  {
         emailField.shouldBe(Condition.exist).click();
         emailField.setValue(email);
         passwordField.click();
         passwordField.setValue(password);
-        logInAccountButton.shouldBe(Condition.exist).click();
+        loginAccountButton.shouldBe(Condition.exist).click();
         createOrderButton.shouldBe(visible);
     }
 }
