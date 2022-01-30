@@ -44,11 +44,11 @@ public class LoginPage {
     }
     //метод логина
     public void login (String email, String password)  {
-        emailField.shouldBe(Condition.exist).click();
+        emailField.click();
         emailField.setValue(email);
         passwordField.click();
         passwordField.setValue(password);
-        loginAccountButton.shouldBe(Condition.exist).click();
+        loginAccountButton.click();
         createOrderButton.shouldBe(visible);
     }
 }

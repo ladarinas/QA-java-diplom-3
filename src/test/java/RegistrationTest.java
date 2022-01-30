@@ -16,7 +16,7 @@ public class RegistrationTest {
     @Test
     public void failRegistration() {
         RegisterPage registerPage =  open(RegisterPage.URL, RegisterPage.class);
-        RegisterPage loginPage  = registerPage.failRegistrationNewUser();
+        registerPage.failRegistrationNewUser();
         assertTrue(registerPage.isIncorrectPasswordTextVisible());
     }
 }

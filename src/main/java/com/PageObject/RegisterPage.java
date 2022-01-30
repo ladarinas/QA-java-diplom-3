@@ -64,13 +64,12 @@ public class RegisterPage {
         return page(LoginPage.class);
     }
 
-    public RegisterPage failRegistrationNewUser() {
+    public void failRegistrationNewUser() {
         nameRegisterField.setValue(RandomStringUtils.randomAlphabetic(10));
         emailRegisterField.setValue(RandomStringUtils.randomAlphabetic(10) + "@yandex.ru");
         passwordRegisterField.setValue(RandomStringUtils.randomAlphabetic(5));
         registerButton.click();
         incorrectPasswordText.shouldBe(Condition.visible);
-        return this;
     }
 
 }
