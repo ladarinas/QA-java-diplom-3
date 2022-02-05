@@ -1,6 +1,7 @@
 import com.PageObject.MainPage;
 
 import com.codeborne.selenide.Configuration;
+import io.qameta.allure.Description;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,26 +17,27 @@ public class MainPageTest {
     }
 
     @Test
+    @Description("Переход к разделу Булки")
     public void goToBun() {
         MainPage mainPage = open(MainPage.URL, MainPage.class);
         mainPage.clickFillingsButton();
         mainPage.clickBunButton();
-        assertTrue(mainPage.isIngredientsListBunVisible());
+        assertTrue("раздел Булки не отображается", mainPage.isIngredientsListBunVisible());
     }
 
     @Test
+    @Description("Переход к разделу Соусы")
     public void goToSauces() {
         MainPage mainPage = open(MainPage.URL, MainPage.class);
         mainPage.clickSaucesButton();
-        assertTrue(mainPage.isIngredientsListSauceVisible());
+        assertTrue("раздел Соусы не отображается", mainPage.isIngredientsListSauceVisible());
     }
 
     @Test
+    @Description("Переход к разделу Начинки")
     public void goToFilling() {
         MainPage mainPage = open(MainPage.URL, MainPage.class);
         mainPage.clickFillingsButton();
-        assertTrue(mainPage.isIngredientsFillingVisible());
+        assertTrue("раздел Начинки не отображается", mainPage.isIngredientsFillingVisible());
     }
-
-
 }

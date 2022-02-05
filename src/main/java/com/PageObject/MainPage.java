@@ -3,6 +3,7 @@ package com.PageObject;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -69,68 +70,75 @@ public class MainPage {
     @FindBy(how = How.XPATH,using = "//input[@name='Name']")
     private SelenideElement nameField;
 
+    @Step("Нажать на кнопку Войти в аккаунт")
     public LoginPage clickLogInAccountButton() {
         logInAccountButton.click();
         return page(LoginPage.class);
     }
 
+    @Step("Отображается кнопка Оформить заказ")
     public boolean isOrderButtonVisible(){
         orderButton.shouldBe(Condition.visible);
         return true;
     }
 
+    @Step("Нажать на Личный кабинет")
     public LoginPage clickPersonalAccountButton() {
         personalAccountButton.click();
         return page(LoginPage.class);
     }
-
+    @Step("Нажать на Булки")
     public void clickBunButton() {
         bunButton.shouldBe(Condition.visible).click();
     }
+    @Step("Нажать на Соусы")
     public void clickSaucesButton() {
         sauceButton.shouldBe(Condition.visible).click();
     }
+    @Step("Нажать на Начинки")
     public void clickFillingsButton() {
         fillingButton.shouldBe(Condition.visible).click();
     }
-
+    @Step("Отображается список булок")
     public boolean isIngredientsListBunVisible() {
         return $(ingredientsList.get(0)).isDisplayed();
     }
-
+    @Step("Отображается список соусов")
     public boolean isIngredientsListSauceVisible() {
         return $(ingredientsList.get(1)).isDisplayed();
     }
-
+    @Step("Отображается список начинок")
     public boolean isIngredientsFillingVisible() {
         return $(ingredientsList.get(2)).isDisplayed();
     }
-
+    @Step("Нажать на Выход")
     public LoginPage clickLogoutButton() {
         logoutButton.click();
         return page(LoginPage.class);
     }
-
+    @Step("Отображается заголовок Вход")
     public boolean isEnterTextVisible() {
         enterText.shouldBe(Condition.visible);
         return true;
     }
+    @Step("Отображается кнопка Профиль")
     public boolean isProfileButtonVisible() {
         ProfileButton.shouldBe(Condition.visible);
         return true;
     }
+    @Step("Получить имя")
     public String getNameValue() {
         return nameField.getAttribute("value");
     }
-
+    @Step("Нажать на логотип")
     public void clickLogoButton() {
         logoButton.click();
     }
-
+    @Step("Получить текст Соберите бургер")
     public String getConstructorText() {
         return constructorText.getText();
     }
-
+    @Step("Нажать на кнопку Конструктор")
     public void clickConstructorButton() {
         constructButton.click();
     }

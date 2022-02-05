@@ -2,6 +2,7 @@ import com.PageObject.LoginPage;
 import com.PageObject.MainPage;
 import com.UserOperations;
 import com.codeborne.selenide.Configuration;
+import io.qameta.allure.Description;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,50 +32,51 @@ public class AccountTest {
     }
 
     @Test
+    @Description("Переход в Личный кабинет")
     public void goToPersonalAccount() {
         MainPage mainPage = open(MainPage.URL, MainPage.class);
         LoginPage loginPage = mainPage.clickPersonalAccountButton();
         loginPage.login(response.get("email"),response.get("password"));
         mainPage.clickPersonalAccountButton();
-        assertTrue(mainPage.isProfileButtonVisible());
         String actualNameValue = mainPage.getNameValue();
         String expectedName = response.get("name");
-        assertEquals(expectedName, actualNameValue);
+        assertEquals("имя пользователя не соответствует",expectedName, actualNameValue);
     }
 
     @Test
+    @Description("Переход из личного кабинета в конструктор по клику на логотип")
     public void goFromPersonalAccountToConstructorClickLogo() {
         MainPage mainPage = open(MainPage.URL, MainPage.class);
         LoginPage loginPage = mainPage.clickPersonalAccountButton();
         loginPage.login(response.get("email"),response.get("password"));
         mainPage.clickPersonalAccountButton();
-        assertTrue(mainPage.isProfileButtonVisible());
         mainPage.clickLogoButton();
         String actualText = mainPage.getConstructorText();
         String expectedText = "Соберите бургер";
-        assertEquals (expectedText, actualText);
+        assertEquals ("заголовок " + expectedText + " не отображается", expectedText, actualText);
     }
 
     @Test
+    @Description("Переход из личного кабинета в конструктор по калику на Конструктор")
     public void goFromPersonalAccountToConstructorClickConstructor() {
         MainPage mainPage = open(MainPage.URL, MainPage.class);
         LoginPage loginPage = mainPage.clickPersonalAccountButton();
         loginPage.login(response.get("email"),response.get("password"));
         mainPage.clickPersonalAccountButton();
-        assertTrue(mainPage.isProfileButtonVisible());
         mainPage.clickConstructorButton();
         String actualText = mainPage.getConstructorText();
         String expectedText = "Соберите бургер";
-        assertEquals (expectedText, actualText);
+        assertEquals ("заголовок " + expectedText + " не отображается" , expectedText, actualText);
     }
 
     @Test
+    @Description("Успешный выход из аккаунта")
     public void successLogout() {
         MainPage mainPage = open(MainPage.URL, MainPage.class);
         LoginPage loginPage = mainPage.clickLogInAccountButton();
         loginPage.login(response.get("email"),response.get("password"));
         mainPage.clickPersonalAccountButton();
         mainPage.clickLogoutButton();
-        assertTrue(mainPage.isEnterTextVisible());
+        assertTrue("заголовок Вход не отображается", mainPage.isEnterTextVisible());
     }
 }

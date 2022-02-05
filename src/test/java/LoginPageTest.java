@@ -4,6 +4,7 @@ import com.PageObject.RecoverPasswordPage;
 import com.PageObject.RegisterPage;
 import com.UserOperations;
 import com.codeborne.selenide.Configuration;
+import io.qameta.allure.Description;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -33,37 +34,41 @@ public class LoginPageTest {
     }
 
     @Test
+    @Description("Вход по кнопке «Войти в аккаунт» на главной")
     public void loginClickButtonLoginInAccountOnMainPage() {
         MainPage mainPage = open(MainPage.URL, MainPage.class);
         LoginPage loginPage = mainPage.clickLogInAccountButton();
         loginPage.login(response.get("email"),response.get("password"));
-        assertTrue(mainPage.isOrderButtonVisible());
+        assertTrue("кнопка Оформить заказ не отображается", mainPage.isOrderButtonVisible());
     }
 
     @Test
+    @Description("Вход через кнопку «Личный кабинет»")
     public void loginClickButtonPersonalAccountOnMainPage() {
         MainPage mainPage = open(MainPage.URL, MainPage.class);
         LoginPage loginPage = mainPage.clickPersonalAccountButton();
         loginPage.login(response.get("email"),response.get("password"));
-        assertTrue(mainPage.isOrderButtonVisible());
+        assertTrue("кнопка Оформить заказ не отображается", mainPage.isOrderButtonVisible());
     }
 
     @Test
+    @Description("Вход через кнопку в форме регистрации")
     public void loginClickButtonInRegisterPage() {
         RegisterPage registerPage =  open(RegisterPage.URL, RegisterPage.class);
         LoginPage loginPage = registerPage.clickLoginButtonOnRegisterPage();
         loginPage.login(response.get("email"),response.get("password"));
         MainPage mainPage = page(MainPage.class);
-        assertTrue(mainPage.isOrderButtonVisible());
+        assertTrue("кнопка Оформить заказ не отображается", mainPage.isOrderButtonVisible());
     }
 
     @Test
+    @Description("Вход через кнопку в форме восстановления пароля")
     public void loginClickButtonOnRecoverPasswordPage() {
         RecoverPasswordPage recoverPasswordPage = open(RecoverPasswordPage.URL, RecoverPasswordPage.class);
         LoginPage loginPage = recoverPasswordPage.clickLoginOnRecoverPasswordPage();
         loginPage.login(response.get("email"),response.get("password"));
         MainPage mainPage = page(MainPage.class);
-        assertTrue(mainPage.isOrderButtonVisible());
+        assertTrue("кнопка Оформить заказ не отображается", mainPage.isOrderButtonVisible());
     }
 
 }

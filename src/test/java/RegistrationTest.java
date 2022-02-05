@@ -1,6 +1,7 @@
 import com.PageObject.LoginPage;
 import com.PageObject.RegisterPage;
 import com.codeborne.selenide.Configuration;
+import io.qameta.allure.Description;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,16 +16,18 @@ public class RegistrationTest {
     }
 
     @Test
+    @Description("Успешная регистрация")
     public void successRegistration() {
         RegisterPage registerPage =  open(RegisterPage.URL, RegisterPage.class);
         LoginPage loginPage = registerPage.successRegistrationNewUser();
-        assertTrue(loginPage.isLogInAccountButtonVisible());
+        assertTrue("не удалось пройти регистрацию", loginPage.isLogInAccountButtonVisible());
     }
 
     @Test
+    @Description("Ошибка некорректного пароля")
     public void failRegistration() {
         RegisterPage registerPage =  open(RegisterPage.URL, RegisterPage.class);
         registerPage.failRegistrationNewUser();
-        assertTrue(registerPage.isIncorrectPasswordTextVisible());
+        assertTrue("ошибка некорректного пароля не отображается", registerPage.isIncorrectPasswordTextVisible());
     }
 }

@@ -2,6 +2,7 @@ package com.PageObject;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
@@ -37,12 +38,12 @@ public class LoginPage {
     //кнопка Оформить заказ
     @FindBy(how = How.XPATH, using = ".//button[text()='Оформить заказ']")
     private SelenideElement createOrderButton;
-
+    @Step("Отображается Войти")
     public boolean isLogInAccountButtonVisible() {
         loginAccountButton.shouldBe(Condition.visible);
         return true;
     }
-    //метод логина
+    @Step("Авторизоваться")
     public void login (String email, String password)  {
         emailField.click();
         emailField.setValue(email);
